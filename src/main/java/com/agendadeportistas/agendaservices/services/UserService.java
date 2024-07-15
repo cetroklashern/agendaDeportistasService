@@ -2,10 +2,7 @@ package com.agendadeportistas.agendaservices.services;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
-
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,8 +20,6 @@ import com.agendadeportistas.agendaservices.repositories.UserRepository;
 public class UserService implements UserDetailsService {
     
     UserRepository userRepository;
-    
-    //BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public UserService(UserRepository userRepository) {

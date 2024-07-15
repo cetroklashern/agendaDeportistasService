@@ -1,14 +1,12 @@
 package com.agendadeportistas.agendaservices.shared.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-public class UserDto {
-
-    private long id;
+@AllArgsConstructor
+public class UsuarioRespuestaDto {
     private String username;
     private String nombre;
     private String email;
-    private String password;
-    private String encryptedPassword;
 }

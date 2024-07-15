@@ -31,4 +31,7 @@ public class UsuariosEntity {
     @JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name = "usuario_id", referencedColumnName = "id_usuario")
     ,inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id_role"))
     private List<RolesEntity> roles = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy ="usuario")
+    private List<PostEntity> posts = new ArrayList<>();
 }
