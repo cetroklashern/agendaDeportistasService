@@ -19,22 +19,26 @@ public class DeportistaService {
     }
 
     public Optional<DeportistaEntity> findByNombre(String nombre) {
-        deportistaRepository.findByNombre(nombre);
+        return deportistaRepository.findByNombre(nombre);
     }
     
     public List<DeportistaEntity> findAll(){
         return deportistaRepository.findAll();
     } 
 
-    public DeportistaEntity findById(String id){
-        deportistaRepository.findById(id);
+    public Optional<DeportistaEntity> findById(String id){
+        return deportistaRepository.findById(id);
     }
 
     public Boolean existsByNombre(String nombre) {
         return deportistaRepository.existsByNombre(nombre);
     }
 
-    public void actualizarCurso(DeportistaEntity deportista) {
+    public Boolean existsById(String id) {
+        return deportistaRepository.existsById(id);
+    }
+
+    public void actualizarDeportista(DeportistaEntity deportista) {
         deportistaRepository.save(deportista);
     }
 

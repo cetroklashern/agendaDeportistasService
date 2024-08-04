@@ -22,13 +22,8 @@ import com.agendadeportistas.agendaservices.services.DeportistaService;
 @RestController
 @RequestMapping("/api/deportistas/")
 public class RestControllerDeportista {
-
-    DeportistaService deportistaService;
-
     @Autowired
-    public RestControllerDeportista(DeportistaService deportistaService) {
-        this.deportistaService = deportistaService;
-    }
+    DeportistaService deportistaService;
 
     /*
      * Método para crear un deportista
@@ -41,7 +36,7 @@ public class RestControllerDeportista {
             return new ResponseEntity<>("el deportista " + deportistaRq.getNombre() + " ya existe en la BD", HttpStatus.BAD_REQUEST);
         }
         // Crear el deportista
-        deportistaService.createDeportista(deportistaRq);
+        deportistaService.crearDeportista(deportistaRq);
 
         return new ResponseEntity<>("Deportista " + deportistaRq.getNombre() + " creado con exito", HttpStatus.CREATED);
     }
@@ -56,7 +51,7 @@ public class RestControllerDeportista {
     @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping(value = "listarNombre/{nombre}", headers = "Accept=application/json")
     public Optional<DeportistaEntity> obtenerDeportistaPorNombre(@PathVariable String nombre) {
-        return deportistaService.findByName(nombre);
+        return deportistaService.findByNombre(nombre);
     }
 
     //Petición para actualizar un deportista

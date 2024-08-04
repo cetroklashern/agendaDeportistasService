@@ -19,15 +19,15 @@ public class AcudienteService {
     }
 
     public Optional<AcudienteEntity> findByNombre(String nombre) {
-        acudienteRepository.findByNombre(nombre);
+        return acudienteRepository.findByNombre(nombre);
     }
     
     public List<AcudienteEntity> findAll(){
         return acudienteRepository.findAll();
     } 
 
-    public AcudienteEntity findById(String id){
-        acudienteRepository.findById(id);
+    public Optional<AcudienteEntity> findById(String id){
+        return acudienteRepository.findById(id);
     }
 
     public Boolean existsByNombre(String nombre) {

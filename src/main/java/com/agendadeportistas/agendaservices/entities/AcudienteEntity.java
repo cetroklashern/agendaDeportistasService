@@ -5,9 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,7 +22,4 @@ public class AcudienteEntity {
     private Boolean imagenPropia;
     private String profesionEmpresa;
     private String parentesco;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy ="acudiente")
-    private List<DeportistaEntity> deportistas = new ArrayList<>();
 }

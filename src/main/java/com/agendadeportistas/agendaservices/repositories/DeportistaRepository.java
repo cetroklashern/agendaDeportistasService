@@ -11,4 +11,5 @@ public interface DeportistaRepository extends JpaRepository<DeportistaEntity, St
     Optional<DeportistaEntity> findByNombre(String nombre);
     Optional<DeportistaEntity> findById(String id);
     Boolean existsByNombre(String nombre);
+    boolean existsById(String id);
 }

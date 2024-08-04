@@ -37,7 +37,9 @@ public class DeportistaEntity {
     private Boolean informacionVacaciones;
     private Boolean comprobanteInscripcion;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy ="deportista")
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)    
+    @JoinTable(name = "deportista_acudiente", joinColumns = @JoinColumn(name = "deportista_id", referencedColumnName = "id_deportista")
+    ,inverseJoinColumns = @JoinColumn(name = "acudiente_id", referencedColumnName = "id_acudiente"))
     private List<AcudienteEntity> acudientes = new ArrayList<>();
 
     /*
