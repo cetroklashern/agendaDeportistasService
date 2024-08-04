@@ -54,12 +54,13 @@ public class SecurityConfig {
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS) //
             .and()
             .authorizeHttpRequests() //toda peticion debe ser autorizada
-            .requestMatchers("/api/auth/**").permitAll()
+            .requestMatchers("**").permitAll()
+            /*.requestMatchers("/api/auth/**").permitAll()
             .requestMatchers(HttpMethod.POST, "/api/cursos/crear").hasAuthority("ADMIN")
             .requestMatchers(HttpMethod.GET,"/api/cursos/listar").hasAnyAuthority("ADMIN" , "USER")
             .requestMatchers(HttpMethod.GET,"/api/cursos/listarNombre/**").hasAnyAuthority("ADMIN" , "USER")
             .requestMatchers(HttpMethod.DELETE,"/api/cursos/eliminar/**").hasAuthority("ADMIN")
-            .requestMatchers(HttpMethod.PUT, "/api/cursos/actualizar").hasAuthority("ADMIN")
+            .requestMatchers(HttpMethod.PUT, "/api/cursos/actualizar").hasAuthority("ADMIN")*/
             .anyRequest().authenticated()
             .and()
             .httpBasic();

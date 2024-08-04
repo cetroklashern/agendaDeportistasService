@@ -23,9 +23,9 @@ public class CursoEntity {
     private String edad;
     @Column(nullable = false, length = 10)
     private String clasificacionEdad;    
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 30)
     private String nivel;
-    @Column(nullable = true, length = 10)
+    @Column(nullable = true, length = 20)
     private String subNivel;
     @Column(nullable = true, length = 10)
     private String modalidad;
