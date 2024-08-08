@@ -9,7 +9,9 @@ import com.agendadeportistas.agendaservices.entities.DeportistaEntity;
 @Repository
 public interface DeportistaRepository extends JpaRepository<DeportistaEntity, String> {
     Optional<DeportistaEntity> findByNombre(String nombre);
+    @SuppressWarnings("null")
     Optional<DeportistaEntity> findById(String id);
     Boolean existsByNombre(String nombre);
+    @SuppressWarnings("null")
     boolean existsById(String id);
 }

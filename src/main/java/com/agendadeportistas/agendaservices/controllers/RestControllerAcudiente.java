@@ -22,7 +22,12 @@ public class RestControllerAcudiente {
 
     @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping(value = "buscarIdentificacion/{id}", headers = "Accept=application/json")
-    public List<AcudienteEntity> searchAcudientes(@PathVariable String id) {
-        return acudienteRepository.findByIdentificacionContaining(id);
+    public AcudienteEntity searchAcudientes(@PathVariable String id) {
+        List<AcudienteEntity> acudientes = acudienteRepository.findByIdContaining(id);
+        if (acudientes == null || acudientes.size() == 0) {
+            return null;
+        } else {
+            return acudientes.get(0);
+        }
     }
 }

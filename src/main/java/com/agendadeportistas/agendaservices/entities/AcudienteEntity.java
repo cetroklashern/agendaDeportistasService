@@ -1,5 +1,10 @@
 package com.agendadeportistas.agendaservices.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,10 +21,13 @@ public class AcudienteEntity {
     private String id;
     private String nombre;
     private String tipoId;
-    private Number numeroCelular;
+    private Long numeroCelular;
     private String direccion;
     private String correoElectronico;
     private Boolean imagenPropia;
     private String profesionEmpresa;
-    private String parentesco;
+
+    @OneToMany(mappedBy = "acudiente", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<DeportistaAcudienteEntity> deportistaAcudientes;
 }

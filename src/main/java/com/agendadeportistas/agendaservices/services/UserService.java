@@ -18,13 +18,8 @@ import com.agendadeportistas.agendaservices.repositories.UserRepository;
 
 @Service
 public class UserService implements UserDetailsService {
-    
+     @Autowired
     UserRepository userRepository;
-
-    @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
     
     public Collection<GrantedAuthority> mapToAutorities(List<RolesEntity> roles){
         return roles.stream().map(

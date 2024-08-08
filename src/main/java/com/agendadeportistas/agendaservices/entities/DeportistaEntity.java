@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,13 +21,13 @@ public class DeportistaEntity {
     @Column(name = "id_deportista")
     private String id;
     private String nombre;
-    private Number edad;
+    private int edad;
     private Date fechaNacimiento;
     private String tipoId;
     private String direccion;
     private String eps;
     private String institucionEducativa;
-    private Number grado;
+    private int grado;
     private String condicionImportante;
     private Boolean imagenPropia;
     @Lob
@@ -37,14 +39,7 @@ public class DeportistaEntity {
     private Boolean informacionVacaciones;
     private Boolean comprobanteInscripcion;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)    
-    @JoinTable(name = "deportista_acudiente", joinColumns = @JoinColumn(name = "deportista_id", referencedColumnName = "id_deportista")
-    ,inverseJoinColumns = @JoinColumn(name = "acudiente_id", referencedColumnName = "id_acudiente"))
-    private List<AcudienteEntity> acudientes = new ArrayList<>();
-
-    /*
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "deportista_curso", joinColumns = @JoinColumn(name = "deportista_id", referencedColumnName = "id_deportista")
-    ,inverseJoinColumns = @JoinColumn(name = "curso_id", referencedColumnName = "id_curso"))
-    private List<CursoEntity> cursos = new ArrayList<>();*/
+    @OneToMany(mappedBy = "deportista", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<DeportistaAcudienteEntity> deportistaAcudientes;
 }
