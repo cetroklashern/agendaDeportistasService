@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.agendadeportistas.agendaservices.entities.CursoEntity;
 import com.agendadeportistas.agendaservices.services.CursoService;
 
-
 @RestController
 @RequestMapping("/api/cursos/")
 public class RestControllerCursos {
@@ -30,16 +29,18 @@ public class RestControllerCursos {
     public RestControllerCursos(CursoService cursoService) {
         this.cursoService = cursoService;
     }
-    
+
     /*
      * Método para crear un curso
+     * 
      * @param cursoRq: datos del curso a crear
      */
     @CrossOrigin(origins = "http://localhost:5173")
     @PostMapping(value = "crear", headers = "Accept=application/json")
     public ResponseEntity<String> crearCurso(@RequestBody CursoEntity cursoRq) {
-        if(cursoService.existsByNombre(cursoRq.getNombre())){
-            return new ResponseEntity<>("el curso " + cursoRq.getNombre() + " ya existe en la BD", HttpStatus.BAD_REQUEST);
+        if (cursoService.existsByNombre(cursoRq.getNombre())) {
+            return new ResponseEntity<>("el curso " + cursoRq.getNombre() + " ya existe en la BD",
+                    HttpStatus.BAD_REQUEST);
         }
         // Crear el curso
         cursoService.createCurso(cursoRq);
@@ -49,25 +50,25 @@ public class RestControllerCursos {
 
     @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping(value = "listar", headers = "Accept=application/json")
-    public List<CursoEntity> listarCelulares() {
+    public List<CursoEntity> listarCursos() {
         return cursoService.findAll();
     }
 
-    //Petición para obtener curso mediante "nombre"
+    // Petición para obtener curso mediante "nombre"
     @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping(value = "listarNombre/{nombre}", headers = "Accept=application/json")
-    public Optional<CursoEntity> obtenerCelularPorId(@PathVariable String nombre) {
+    public Optional<CursoEntity> obtenerCursosPorNombre(@PathVariable String nombre) {
         return cursoService.findByName(nombre);
     }
 
-    //Petición para actualizar un curso
+    // Petición para actualizar un curso
     @CrossOrigin(origins = "http://localhost:5173")
     @PutMapping(value = "actualizar", headers = "Accept=application/json")
     public void actualizarCurso(@RequestBody CursoEntity cursoRq) {
         cursoService.actualizarCurso(cursoRq);
     }
 
-    //Petición para eliminar un curso    
+    // Petición para eliminar un curso
     @CrossOrigin(origins = "http://localhost:5173")
     @DeleteMapping(value = "eliminar/{id}", headers = "Accept=application/json")
     public void eliminarCurso(@PathVariable Long id) {

@@ -1,5 +1,10 @@
 package com.agendadeportistas.agendaservices.entities;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +27,7 @@ public class CursoEntity {
     @Column(nullable = false, length = 20)
     private String edad;
     @Column(nullable = false, length = 10)
-    private String clasificacionEdad;    
+    private String clasificacionEdad;
     @Column(nullable = false, length = 30)
     private String nivel;
     @Column(nullable = true, length = 20)
@@ -35,4 +40,8 @@ public class CursoEntity {
     private int duracionClaseHoras;
     private int duracionClaseMinutos;
     private String color;
+
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL)
+    @JsonBackReference
+    private List<GrupoEntity> grupos;
 }

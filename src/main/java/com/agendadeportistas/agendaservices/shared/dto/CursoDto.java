@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class CursoDto {
-    
-    private Long id;
+
+    private Long idCurso;
     private String nombre;
     private String sexo;
     private String clasificacionEdad;

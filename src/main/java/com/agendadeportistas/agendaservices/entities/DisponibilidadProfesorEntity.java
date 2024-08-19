@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "disponibilidad")
-public class DisponibilidadEntity {
+@Table(name = "disponibilidad_profesor")
+public class DisponibilidadProfesorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_disponibilidad")
@@ -23,7 +23,7 @@ public class DisponibilidadEntity {
     private int horaFinDisponibilidad;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ubicacion_id")
+    @JoinColumn(name = "profesor_id")
     @JsonBackReference
-    private UbicacionEntity ubicacion;
+    private ProfesorEntity profesor;
 }

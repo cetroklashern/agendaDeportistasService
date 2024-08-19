@@ -1,7 +1,8 @@
 package com.agendadeportistas.agendaservices.entities;
 
-import java.util.Date;
 import java.util.List;
+
+import org.hibernate.annotations.ManyToAny;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -15,26 +16,26 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "ubicacion")
-public class UbicacionEntity {
+@Table(name = "profesor")
+public class ProfesorEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_ubicacion")
-    private Long id;
-
+    @Column(name = "id_profesor")
+    private String id;
     private String nombre;
+    private String tipoId;
+    private String numeroCelular;
     private String direccion;
-    private String telefono;
+    private String eps;
+    private String arl;
+    private String correoElectronico;
     private String nombreContacto;
-    private Boolean estado;
-    private Date fechaInicioContrato;
-    private Date fechaFinContrato;
+    private String numeroContacto;
 
-    @OneToMany(mappedBy = "ubicacion", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "profesor", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<DisponibilidadEntity> disponibilidades;
+    private List<DisponibilidadProfesorEntity> disponibilidades;
 
-    @OneToMany(mappedBy = "ubicacion", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "profesor", cascade = CascadeType.ALL)
     @JsonBackReference
     private List<GrupoEntity> grupos;
 }
