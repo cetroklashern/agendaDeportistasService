@@ -23,12 +23,8 @@ import com.agendadeportistas.agendaservices.services.CursoService;
 @RestController
 @RequestMapping("/api/cursos/")
 public class RestControllerCursos {
-    CursoService cursoService;
-
     @Autowired
-    public RestControllerCursos(CursoService cursoService) {
-        this.cursoService = cursoService;
-    }
+    CursoService cursoService;
 
     /*
      * Método para crear un curso

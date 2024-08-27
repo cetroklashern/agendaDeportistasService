@@ -1,5 +1,7 @@
 package com.agendadeportistas.agendaservices.entities;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -38,4 +40,8 @@ public class GrupoEntity {
     @JoinColumn(name = "ubicacion_id")
     @JsonManagedReference
     private UbicacionEntity ubicacion;
+
+    @OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL)
+    @JsonBackReference
+    private List<AgendaEntity> agendas;
 }

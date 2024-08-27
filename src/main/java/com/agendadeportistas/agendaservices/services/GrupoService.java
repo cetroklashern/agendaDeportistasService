@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.agendadeportistas.agendaservices.entities.CursoEntity;
 import com.agendadeportistas.agendaservices.entities.GrupoEntity;
@@ -30,6 +31,7 @@ public class GrupoService {
     @Autowired
     private CursoRepository cursoRepository;
 
+    @Transactional
     public void crearGrupo(GrupoDto grupoDto) {
         GrupoEntity grupo = mapearToEntity(grupoDto);
 
@@ -57,6 +59,7 @@ public class GrupoService {
         }
     }
 
+    @Transactional
     public void actualizarGrupo(GrupoDto grupoDto) {
         GrupoEntity grupo = grupoRepository.findById(grupoDto.getIdGrupo())
                 .orElseThrow(() -> new RuntimeException("Grupo not found"));

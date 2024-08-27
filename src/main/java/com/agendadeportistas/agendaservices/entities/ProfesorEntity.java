@@ -30,6 +30,8 @@ public class ProfesorEntity {
     private String correoElectronico;
     private String nombreContacto;
     private String numeroContacto;
+    // private Date fechaInicioContrato;
+    // private Date fechaFinContrato;
 
     @OneToMany(mappedBy = "profesor", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference

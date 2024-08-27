@@ -1,15 +1,11 @@
 package com.agendadeportistas.agendaservices.controllers;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,12 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.agendadeportistas.agendaservices.entities.AcudienteEntity;
-import com.agendadeportistas.agendaservices.entities.DeportistaAcudienteEntity;
 import com.agendadeportistas.agendaservices.entities.DeportistaEntity;
-import com.agendadeportistas.agendaservices.services.AcudienteService;
+import com.agendadeportistas.agendaservices.repositories.DeportistaRepository;
 import com.agendadeportistas.agendaservices.services.DeportistaService;
-import com.agendadeportistas.agendaservices.shared.dto.AcudienteDto;
 import com.agendadeportistas.agendaservices.shared.dto.DeportistaDto;
 
 @RestController
@@ -37,7 +30,7 @@ public class RestControllerDeportista {
     @Autowired
     DeportistaService deportistaService;
     @Autowired
-    AcudienteService acudienteService;
+    DeportistaRepository deportistaRepository;
 
     /*
      * Método para crear un deportista
@@ -162,5 +155,27 @@ public class RestControllerDeportista {
     public void eliminarDeportista(@PathVariable String id) {
         System.out.println("Deportista a eliminar el id: " + id);
         deportistaService.eliminarDeportista(id);
+    }
+
+    @CrossOrigin(origins = "http://localhost:5173")
+    @GetMapping(value = "buscarIdentificacion/{id}", headers = "Accept=application/json")
+    public DeportistaDto searchDeportistas(@PathVariable String id) {
+        List<DeportistaDto> deportistas = deportistaService.findByIdContaining(id);
+        if (deportistas == null || deportistas.size() == 0) {
+            return null;
+        } else {
+            return deportistas.get(0);
+        }
+    }
+
+    @CrossOrigin(origins = "http://localhost:5173")
+    @GetMapping(value = "buscarNombre/{nombre}", headers = "Accept=application/json")
+    public List<DeportistaDto> searchDeportistasNombre(@PathVariable String nombre) {
+        List<DeportistaDto> deportistas = deportistaService.findByNombreContaining(nombre);
+        if (deportistas == null || deportistas.size() == 0) {
+            return null;
+        } else {
+            return deportistas;
+        }
     }
 }

@@ -124,6 +124,12 @@ public class DeportistaService {
 
     public List<DeportistaDto> findAll() {
         List<DeportistaEntity> deportistas = deportistaRepository.findAll();
+        List<DeportistaDto> deportistaDTOs = mapearEntityToDto(deportistas);
+
+        return deportistaDTOs;
+    }
+
+    private List<DeportistaDto> mapearEntityToDto(List<DeportistaEntity> deportistas) {
         List<DeportistaDto> deportistaDTOs = deportistas.stream()
                 .map(deportista -> new DeportistaDto(
                         deportista.getId(),
@@ -154,7 +160,6 @@ public class DeportistaService {
                                         deportistaAcudiente.getParentesco()))
                                 .collect(Collectors.toList())))
                 .collect(Collectors.toList());
-
         return deportistaDTOs;
     }
 
@@ -180,5 +185,27 @@ public class DeportistaService {
 
     public void eliminarDeportista(String id) {
         deportistaRepository.deleteById(id);
+    }
+
+    public List<DeportistaDto> findByNombreContaining(String nombre) {
+        List<DeportistaEntity> deportistas = deportistaRepository.findByNombreContaining(nombre);
+
+        List<DeportistaDto> deportistaDTOs = mapearEntityToDto(deportistas);
+        if (deportistaDTOs == null || deportistaDTOs.size() == 0) {
+            return null;
+        } else {
+            return deportistaDTOs;
+        }
+    }
+
+    public List<DeportistaDto> findByIdContaining(String id) {
+        List<DeportistaEntity> deportistas = deportistaRepository.findByIdContaining(id);
+
+        List<DeportistaDto> deportistaDTOs = mapearEntityToDto(deportistas);
+        if (deportistaDTOs == null || deportistaDTOs.size() == 0) {
+            return null;
+        } else {
+            return deportistaDTOs;
+        }
     }
 }
