@@ -26,7 +26,7 @@ public class RestControllerGrupo {
     @Autowired
     GrupoService grupoService;
 
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @PostMapping(value = "crear", headers = "Accept=application/json")
     public ResponseEntity<String> crearGrupo(@RequestBody GrupoDto grupoRq) {
         // Crear el Grupo
@@ -36,20 +36,20 @@ public class RestControllerGrupo {
     }
 
     // Petición para actualizar un Grupo
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @PostMapping(value = "actualizar", headers = "Accept=application/json")
     public void actualizarGrupo(@RequestBody GrupoDto grupoRq) {
         grupoService.actualizarGrupo(grupoRq);
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @GetMapping(value = "listar", headers = "Accept=application/json")
     public List<GrupoEntity> listarGrupos() {
         return grupoService.findAll();
     }
 
     // Petición para eliminar un Grupo
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @DeleteMapping(value = "eliminar/{id}", headers = "Accept=application/json")
     public void eliminarGrupo(@PathVariable Long id) {
         System.out.println("Grupo a eliminar el id: " + id);

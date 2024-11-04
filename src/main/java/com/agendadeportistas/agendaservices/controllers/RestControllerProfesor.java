@@ -27,7 +27,7 @@ public class RestControllerProfesor {
     @Autowired
     ProfesorService profesorService;
 
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @PostMapping(value = "crear", headers = "Accept=application/json")
     public ResponseEntity<String> crearProfesor(@RequestBody ProfesorDto profesorRq) {
         if (profesorService.existsById(profesorRq.getId())) {
@@ -41,27 +41,27 @@ public class RestControllerProfesor {
     }
 
     // Petición para actualizar un Profesor
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @PostMapping(value = "actualizar", headers = "Accept=application/json")
     public void actualizarProfesor(@RequestBody ProfesorDto ProfesorRq) {
         profesorService.actualizarProfesor(ProfesorRq);
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @GetMapping(value = "listar", headers = "Accept=application/json")
     public List<ProfesorEntity> listarProfesores() {
         return profesorService.findAll();
     }
 
     // Petición para obtener Profesor mediante "nombre"
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @GetMapping(value = "listarNombre/{nombre}", headers = "Accept=application/json")
     public Optional<ProfesorEntity> obtenerProfesorsPorNombre(@PathVariable String nombre) {
         return profesorService.findByName(nombre);
     }
 
     // Petición para eliminar un Profesor
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @DeleteMapping(value = "eliminar/{id}", headers = "Accept=application/json")
     public void eliminarProfesor(@PathVariable String id) {
         System.out.println("Profesor a eliminar el id: " + id);

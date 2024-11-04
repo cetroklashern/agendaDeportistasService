@@ -19,7 +19,7 @@ public class RestControllerAcudiente {
     @Autowired
     private AcudienteRepository acudienteRepository;
 
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @GetMapping(value = "buscarIdentificacion/{id}", headers = "Accept=application/json")
     public AcudienteEntity searchAcudientes(@PathVariable String id) {
         List<AcudienteEntity> acudientes = acudienteRepository.findByIdContaining(id);

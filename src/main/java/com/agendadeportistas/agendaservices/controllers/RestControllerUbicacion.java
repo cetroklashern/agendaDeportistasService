@@ -27,7 +27,7 @@ public class RestControllerUbicacion {
     @Autowired
     UbicacionService ubicacionService;
 
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @PostMapping(value = "crear", headers = "Accept=application/json")
     public ResponseEntity<String> crearUbicacion(@RequestBody UbicacionDto ubicacionRq) {
         if (ubicacionService.existsByNombre(ubicacionRq.getNombre())) {
@@ -41,27 +41,27 @@ public class RestControllerUbicacion {
     }
 
     // Petición para actualizar un Ubicacion
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @PostMapping(value = "actualizar", headers = "Accept=application/json")
     public void actualizarUbicacion(@RequestBody UbicacionDto UbicacionRq) {
         ubicacionService.actualizarUbicacion(UbicacionRq);
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @GetMapping(value = "listar", headers = "Accept=application/json")
     public List<UbicacionEntity> listarUbicaciones() {
         return ubicacionService.findAll();
     }
 
     // Petición para obtener Ubicacion mediante "nombre"
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @GetMapping(value = "listarNombre/{nombre}", headers = "Accept=application/json")
     public Optional<UbicacionEntity> obtenerUbicacionsPorNombre(@PathVariable String nombre) {
         return ubicacionService.findByName(nombre);
     }
 
     // Petición para eliminar un Ubicacion
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @DeleteMapping(value = "eliminar/{id}", headers = "Accept=application/json")
     public void eliminarUbicacion(@PathVariable Long id) {
         System.out.println("Ubicacion a eliminar el id: " + id);

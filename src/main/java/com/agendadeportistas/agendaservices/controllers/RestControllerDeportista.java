@@ -37,14 +37,14 @@ public class RestControllerDeportista {
      * 
      * @param deportistaRq: datos del deportista a crear
      */
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @PostMapping(value = "crear", headers = "Accept=application/json")
     public ResponseEntity<String> createDeportista(@RequestBody DeportistaDto deportistaDto) {
         DeportistaEntity deportista = deportistaService.createDeportista(deportistaDto);
         return ResponseEntity.ok("Deportista " + deportista.getNombre() + " creado en la base de datos");
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @PostMapping(value = "actualizar", consumes = "application/json", produces = "application/json")
     public ResponseEntity<String> updateDeportista(@RequestBody DeportistaDto deportistaDto) {
         DeportistaEntity deportista = deportistaService.updateDeportista(deportistaDto);
@@ -52,7 +52,7 @@ public class RestControllerDeportista {
         return ResponseEntity.ok("Deportista " + deportista.getNombre() + " actualizado en la base de datos");
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @PostMapping("uploadFotoDeportista/{id}/fotoDeportista")
     public ResponseEntity<String> uploadFotoDeportista(@PathVariable String id,
             @RequestParam("file") MultipartFile file) {
@@ -73,7 +73,7 @@ public class RestControllerDeportista {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @PostMapping("uploadFotoDocumento/{id}/fotoDocumento")
     public ResponseEntity<String> uploadFotoDocumento(@PathVariable String id,
             @RequestParam("file") MultipartFile file) {
@@ -94,7 +94,7 @@ public class RestControllerDeportista {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @GetMapping(value = "listar", headers = "Accept=application/json")
     public ResponseEntity<List<DeportistaDto>> listarDeportistas() {
         List<DeportistaDto> deportistasResp = deportistaService.findAll();
@@ -102,6 +102,7 @@ public class RestControllerDeportista {
         return ResponseEntity.ok(deportistasResp);
     }
 
+    @CrossOrigin(origins = "http://localhost:4000")
     @GetMapping("/{id}/fotoDeportista")
     public ResponseEntity<String> getFotoDeportista(@PathVariable String id) {
         System.out.println("getFotoDeportista: " + id);
@@ -120,6 +121,7 @@ public class RestControllerDeportista {
         return ResponseEntity.ok(base64Image);
     }
 
+    @CrossOrigin(origins = "http://localhost:4000")
     @GetMapping("/{id}/fotoDocumento")
     public ResponseEntity<String> getFotoDocumento(@PathVariable String id) {
         System.out.println("getFotoDocumento: " + id);
@@ -143,21 +145,21 @@ public class RestControllerDeportista {
     }
 
     // Petición para actualizar un deportista
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @PutMapping(value = "actualizar", headers = "Accept=application/json")
     public void actualizarDeportista(@RequestBody DeportistaEntity deportistaRq) {
         deportistaService.actualizarDeportista(deportistaRq);
     }
 
     // Petición para eliminar un deportista
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @DeleteMapping(value = "eliminar/{id}", headers = "Accept=application/json")
     public void eliminarDeportista(@PathVariable String id) {
         System.out.println("Deportista a eliminar el id: " + id);
         deportistaService.eliminarDeportista(id);
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @GetMapping(value = "buscarIdentificacion/{id}", headers = "Accept=application/json")
     public DeportistaDto searchDeportistas(@PathVariable String id) {
         List<DeportistaDto> deportistas = deportistaService.findByIdContaining(id);
@@ -168,7 +170,7 @@ public class RestControllerDeportista {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @GetMapping(value = "buscarNombre/{nombre}", headers = "Accept=application/json")
     public List<DeportistaDto> searchDeportistasNombre(@PathVariable String nombre) {
         List<DeportistaDto> deportistas = deportistaService.findByNombreContaining(nombre);

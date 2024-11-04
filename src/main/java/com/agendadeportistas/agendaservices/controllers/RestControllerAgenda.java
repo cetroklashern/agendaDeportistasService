@@ -32,7 +32,7 @@ public class RestControllerAgenda {
     @Autowired
     AgendaRepository agendaRepository;
 
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @PostMapping(value = "crear", headers = "Accept=application/json")
     public ResponseEntity<String> crearAgenda(@RequestBody AgendaDto agendaRq) {
         // Crear el Agenda
@@ -41,14 +41,14 @@ public class RestControllerAgenda {
         return new ResponseEntity<>("Agenda creado con exito", HttpStatus.CREATED);
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @GetMapping(value = "listar", headers = "Accept=application/json")
     public List<AgendaLightDto> listarAgendas() {
         return agendaService.findAll();
     }
 
     // Petición para eliminar un Agenda
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @DeleteMapping(value = "eliminar/{id}", headers = "Accept=application/json")
     public void eliminarAgenda(@PathVariable Long id) {
         System.out.println("Agenda a eliminar el id: " + id);

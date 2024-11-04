@@ -31,7 +31,7 @@ public class RestControllerCursos {
      * 
      * @param cursoRq: datos del curso a crear
      */
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @PostMapping(value = "crear", headers = "Accept=application/json")
     public ResponseEntity<String> crearCurso(@RequestBody CursoEntity cursoRq) {
         if (cursoService.existsByNombre(cursoRq.getNombre())) {
@@ -44,28 +44,28 @@ public class RestControllerCursos {
         return new ResponseEntity<>("Curso " + cursoRq.getNombre() + " creado con exito", HttpStatus.CREATED);
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @GetMapping(value = "listar", headers = "Accept=application/json")
     public List<CursoEntity> listarCursos() {
         return cursoService.findAll();
     }
 
     // Petición para obtener curso mediante "nombre"
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @GetMapping(value = "listarNombre/{nombre}", headers = "Accept=application/json")
     public Optional<CursoEntity> obtenerCursosPorNombre(@PathVariable String nombre) {
         return cursoService.findByName(nombre);
     }
 
     // Petición para actualizar un curso
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @PutMapping(value = "actualizar", headers = "Accept=application/json")
     public void actualizarCurso(@RequestBody CursoEntity cursoRq) {
         cursoService.actualizarCurso(cursoRq);
     }
 
     // Petición para eliminar un curso
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "http://localhost:4000")
     @DeleteMapping(value = "eliminar/{id}", headers = "Accept=application/json")
     public void eliminarCurso(@PathVariable Long id) {
         System.out.println("Curso a eliminar el id: " + id);
