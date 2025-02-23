@@ -2,8 +2,9 @@ package com.agendadeportistas.agendaservices.entities;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "cursos")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idCurso", scope = CursoEntity.class)
 public class CursoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,6 +44,6 @@ public class CursoEntity {
     private String color;
 
     @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonIgnore
     private List<GrupoEntity> grupos;
 }

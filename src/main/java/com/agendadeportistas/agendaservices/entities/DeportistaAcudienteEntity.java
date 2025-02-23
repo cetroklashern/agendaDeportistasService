@@ -1,6 +1,7 @@
 package com.agendadeportistas.agendaservices.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "deportista_acudiente")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = DeportistaAcudienteEntity.class)
 public class DeportistaAcudienteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,12 +21,10 @@ public class DeportistaAcudienteEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "deportista_id")
-    @JsonBackReference
     private DeportistaEntity deportista;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "acudiente_id")
-    @JsonBackReference
     private AcudienteEntity acudiente;
 
     private String parentesco;

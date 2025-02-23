@@ -1,9 +1,9 @@
 package com.agendadeportistas.agendaservices.entities;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "acudiente")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = AcudienteEntity.class)
 public class AcudienteEntity {
     @Id
     @Column(name = "id_acudiente")
@@ -28,6 +29,5 @@ public class AcudienteEntity {
     private String profesionEmpresa;
 
     @OneToMany(mappedBy = "acudiente", cascade = CascadeType.ALL)
-    @JsonManagedReference
     private List<DeportistaAcudienteEntity> deportistaAcudientes;
 }

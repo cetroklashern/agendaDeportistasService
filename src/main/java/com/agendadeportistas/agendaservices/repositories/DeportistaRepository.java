@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-import com.agendadeportistas.agendaservices.entities.AcudienteEntity;
 import com.agendadeportistas.agendaservices.entities.DeportistaEntity;
 
 @Repository

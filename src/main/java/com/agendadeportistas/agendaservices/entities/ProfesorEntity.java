@@ -2,10 +2,9 @@ package com.agendadeportistas.agendaservices.entities;
 
 import java.util.List;
 
-import org.hibernate.annotations.ManyToAny;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,6 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "profesor")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = ProfesorEntity.class)
 public class ProfesorEntity {
     @Id
     @Column(name = "id_profesor")
@@ -30,14 +30,11 @@ public class ProfesorEntity {
     private String correoElectronico;
     private String nombreContacto;
     private String numeroContacto;
-    // private Date fechaInicioContrato;
-    // private Date fechaFinContrato;
 
     @OneToMany(mappedBy = "profesor", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
     private List<DisponibilidadProfesorEntity> disponibilidades;
 
     @OneToMany(mappedBy = "profesor", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonIgnore
     private List<GrupoEntity> grupos;
 }

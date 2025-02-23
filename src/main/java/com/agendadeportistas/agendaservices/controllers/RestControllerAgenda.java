@@ -3,7 +3,6 @@ package com.agendadeportistas.agendaservices.controllers;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.agendadeportistas.agendaservices.shared.dto.AgendaDto;
 import com.agendadeportistas.agendaservices.shared.dto.AgendaLightDto;
-import com.agendadeportistas.agendaservices.entities.AcudienteEntity;
-import com.agendadeportistas.agendaservices.entities.AgendaEntity;
 import com.agendadeportistas.agendaservices.repositories.AgendaRepository;
 import com.agendadeportistas.agendaservices.services.AgendaService;
 

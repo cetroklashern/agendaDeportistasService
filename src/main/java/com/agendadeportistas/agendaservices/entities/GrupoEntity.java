@@ -2,8 +2,9 @@ package com.agendadeportistas.agendaservices.entities;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "grupo")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idGrupo", scope = GrupoEntity.class)
 public class GrupoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,22 +28,22 @@ public class GrupoEntity {
     private String horaFin;
     private int cupos;
 
+    // Relación con CursoEntity
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "curso_id")
-    @JsonManagedReference
     private CursoEntity curso;
 
+    // Relación con ProfesorEntity
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "profesor_id")
-    @JsonManagedReference
     private ProfesorEntity profesor;
 
+    // Relación con UbicacionEntity
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ubicacion_id")
-    @JsonManagedReference
     private UbicacionEntity ubicacion;
 
     @OneToMany(mappedBy = "grupo", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonIgnore
     private List<AgendaEntity> agendas;
 }

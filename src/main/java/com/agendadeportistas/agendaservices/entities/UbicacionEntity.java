@@ -3,8 +3,9 @@ package com.agendadeportistas.agendaservices.entities;
 import java.util.Date;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "ubicacion")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = UbicacionEntity.class)
 public class UbicacionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,10 +33,9 @@ public class UbicacionEntity {
     private Date fechaFinContrato;
 
     @OneToMany(mappedBy = "ubicacion", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
     private List<DisponibilidadEntity> disponibilidades;
 
     @OneToMany(mappedBy = "ubicacion", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonIgnore
     private List<GrupoEntity> grupos;
 }

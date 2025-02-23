@@ -5,18 +5,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "deportista")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id", scope = DeportistaEntity.class)
 public class DeportistaEntity {
     @Id
     @Column(name = "id_deportista")
@@ -32,8 +33,10 @@ public class DeportistaEntity {
     private String condicionImportante;
     private Boolean imagenPropia;
     @Lob
+    @JsonIgnore
     private byte[] fotoDeportista;
     @Lob
+    @JsonIgnore
     private byte[] fotoDocumento;
     private Boolean informacionMensualidad;
     private Boolean informacionReposicion;
@@ -41,10 +44,8 @@ public class DeportistaEntity {
     private Boolean comprobanteInscripcion;
 
     @OneToMany(mappedBy = "deportista", cascade = CascadeType.ALL)
-    @JsonManagedReference
     private List<DeportistaAcudienteEntity> deportistaAcudientes;
 
     @OneToMany(mappedBy = "deportista", cascade = CascadeType.ALL)
-    @JsonBackReference
     private List<AgendaEntity> agendas;
 }
